@@ -29,3 +29,5 @@ https://medium.com/@dieggo.filipe/uv-the-new-python-package-manager-you-need-to-
 https://www.youtube.com/watch?v=AMdG7IjgSPM
 https://youtu.be/5rTwOt9Qgik
 
+pyshorteners:Python library that bridges to various third party shortening services like TinyUrl,Bitly etc..
+
