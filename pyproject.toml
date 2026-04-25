@@ -6,4 +6,5 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "pyfiglet>=1.0.4",
+    "pyshorteners>=1.0.1",
 ]
