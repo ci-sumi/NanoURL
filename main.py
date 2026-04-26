@@ -1,5 +1,6 @@
 
 import pyshorteners
+#pyshorteners is a package which bridges the 3rd party Url shortener service"
 #  pyfiglet converts normal text to ASCII Art
 from pyfiglet import figlet_format
 def main():
