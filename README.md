@@ -36,6 +36,16 @@ uv sync
 uv run main.py
 ```
 
+Git tips from Tomi
+```sh
+git remote show origin
+[-Scenario- git pull was pulling from origin/master
+git push was pushing to origin/main]
+git branch -u origin/main main
+
+```
+
+
 ## References
 
 - [Title 1](https://medium.com/@dieggo.filipe/uv-the-new-python-package-manager-you-need-to-know-492a147af74c)
