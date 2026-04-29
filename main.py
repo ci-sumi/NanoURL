@@ -19,9 +19,9 @@ def shorten_url_pyshorteners(long_url):
 if __name__ == "__main__":
     main()
     # shorten_url_pyshorteners()
-    long_url=input("Enter the URL to shorten using pyshorteners:")
+    long_url=input("Enter the URL to shorten using pyshorteners: ")
     if long_url.strip()=="":
         print("Invalid URL")
         exit()
     shorten_url=shorten_url_pyshorteners(long_url)
-    print(f"ShortenedURL{shorten_url}")
+    print(f"ShortenedURL: {shorten_url}")
