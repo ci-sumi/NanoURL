@@ -24,4 +24,5 @@ if __name__ == "__main__":
         print("Invalid URL")
         exit()
     shorten_url=shorten_url_pyshorteners(long_url)
-    print(f"ShortenedURL: {shorten_url}")
+    # Add Yellow color to the output
+    print(f"ShortenedURL: \033[33m{shorten_url}\033")
