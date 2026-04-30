@@ -52,3 +52,4 @@ git branch -u origin/main main
 - [Video 1](https://www.youtube.com/watch?v=AMdG7IjgSPM)
 - [Video 2](https://youtu.be/5rTwOt9Qgik)
 - [Flask Video](https://www.youtube.com/watch?v=mqhxxeeTbu0&list=PLzMcBGfZo4-n4vJJybUVV3Un_NFS5EOgX)
+- [Flask Video 2](https://www.youtube.com/watch?v=45P3xQPaYxc)

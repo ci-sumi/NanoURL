@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NanoUrl</title>
+</head>
+<body>
+    <h2>Nano URL Shortner</h2>
+    <form method="POST">
+        <button type="submit">Generate Random code</button>
+    </form> 
+    {%if shorten_url %}
+        <p>Your Generated code is :<strong>{{shorten_url}}</strong></p>
+    {% endif %}
+</body>
+</html>
