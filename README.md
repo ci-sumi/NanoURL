@@ -53,3 +53,14 @@ git branch -u origin/main main
 - [Video 2](https://youtu.be/5rTwOt9Qgik)
 - [Flask Video](https://www.youtube.com/watch?v=mqhxxeeTbu0&list=PLzMcBGfZo4-n4vJJybUVV3Un_NFS5EOgX)
 - [Flask Video 2](https://www.youtube.com/watch?v=45P3xQPaYxc)
+
+I came across a Git issue in our main project NanoURL
+![image](https://hackmd.io/_uploads/r1TWp8Q0Zx.png)
+
+it solved after running this command
+```sh
+rm -f .git/index.lock
+```
+
+Issue : Git created a teporary lock file(A git process was interupted or git didn't cleanu properly)
+
