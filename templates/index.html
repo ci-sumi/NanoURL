@@ -7,9 +7,8 @@
     <title>NanoUrl</title>
     <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
 </head>
-
 <body class="bg-purple-500 min-h-screen flex items-center justify-center">
-    <div class="bg-yellow-200 shadow-lg rounded-2xl p-8 w-full max-w-md">
+    <div class="bg-yellow-200 rounded-3xl shadow-lg p-8 w-full">
         <h1 class="text-3xl font-bold text-center text-blue-600 mb-6">
             Nano URL Shortner
         </h1>
@@ -35,7 +34,14 @@
             </strong>
         </div>
         {% endif %}
+        <div class="flex justify-center mt-6">
+        <button class="bg-purple-500 hover:bg-blue-400 text-white font-bold 
+        py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+         Copy
+    </button>
+        </div>
     </div>
+    
 </body>
 
 </html>
