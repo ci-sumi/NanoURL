@@ -1,10 +1,12 @@
 
-from flask import Flask,redirect,render_template,request
+from flask import Flask, app,redirect,render_template,request
 from flask_sqlalchemy import SQLAlchemy
 import base64
 #Predefined sets of characters
 import string
 import random
+
+from sqlalchemy import inspect
 from tools.url_shortner import shorten_url_pyshorteners
 
 # To Store the short URL and their associated URLS
@@ -16,9 +18,19 @@ nanourl.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #Creating the database instance
 db=SQLAlchemy(nanourl)
 
-@nanourl.route("/c")
+@nanourl.route("/c",methods=['GET','POST'])
 def home():
-    return "Database connected"
+    if request.method=="POST":
+        name=request.form.get("name")
+        user=User(name=name)
+        db.session.add(user)
+        db.session.commit()
+    return render_template("user.html")
+
+@nanourl.route("/c/users",methods=['GET'])
+def users():
+    all_users = User.query.all()
+    return render_template("user.html", all_users=all_users)
 
 class User(db.Model):
     id =db.Column(db.Integer,primary_key=True)
@@ -27,6 +39,7 @@ class User(db.Model):
     def __repr__(self):
         return f"id :{self.id}name:{self.name}"
     
+
 
  
 def generate_short_url():
@@ -45,4 +58,9 @@ def index():
 if __name__=='__main__':
     with nanourl.app_context():
         db.create_all()
+        inspector = inspect(db.engine)
+        users=User.query.all()
+    print(inspector.get_table_names())
+    print(users)
     nanourl.run(debug=True)
+
