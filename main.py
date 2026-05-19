@@ -1,4 +1,6 @@
 
+import datetime
+
 from flask import Flask, app,redirect,render_template,request
 from flask_sqlalchemy import SQLAlchemy
 import base64
@@ -18,49 +20,93 @@ nanourl.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #Creating the database instance
 db=SQLAlchemy(nanourl)
 
-@nanourl.route("/c",methods=['GET','POST'])
-def home():
-    if request.method=="POST":
-        name=request.form.get("name")
-        user=User(name=name)
-        db.session.add(user)
-        db.session.commit()
-    return render_template("user.html")
+class Urlshortenr(db.Model):
+    id=db.Column(db.Integer,primary_key=True)
+    original_url=db.Column(db.String(500),nullable=False)
+    short_url=db.Column(db.String(10),unique=True,nullable=True)
+    created_at=db.Column(db.DateTime,nullable=False,server_default=db.func.now())
+ 
+ 
+ 
+BASE62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+def encode_62(num):
+    if num==0:
+        return BASE62[0]
+    arr=[]
+    while num:
+        rem = num%62
+        arr.append(BASE62[rem])
+        num//=62
+    arr.reverse()
+    return "".join(arr)   
+#Save the longurl to Database
+@nanourl.route("/shorten",methods=["POST"])
+def url_shortener():
+    long_url=request.form.get("url_sumi").strip()
+    if not long_url:
+        return "Please provide a valid URL"
+    if not long_url.startswith(("http://","https://")):
+        return "Invalid Url"
+    if " " in long_url:
+        return "Space is not allowed"
+    existing_url=Urlshortenr.query.filter_by(original_url=long_url).first()
+    if existing_url:
+        return f"{existing_url.short_url}"
+    submit_original_url=Urlshortenr(original_url=long_url)
+    db.session.add(submit_original_url)
+    db.session.flush()
+    short_code=encode_62(submit_original_url.id)
+    submit_original_url.short_url=short_code
+    db.session.commit()
+    return f"{long_url} {short_code} is saved"
 
-@nanourl.route("/c/users",methods=['GET'])
-def users():
-    all_users = User.query.all()
-    return render_template("user.html", all_users=all_users)
+    
+@nanourl.route("/")
+def index():
+    return render_template("index.html")
+    
+# def home():
+#     if request.method=="POST":uv
+#         name=request.form.get("name")
+#         user=User(name=name)
+#         db.session.add(user)
+#         db.session.commit()
+#     return render_template("user.html")
 
-class User(db.Model):
-    id =db.Column(db.Integer,primary_key=True)
-    name=db.Column(db.String(100))
+# @nanourl.route("/c/users",methods=['GET'])
+# def users():
+#     all_users = User.query.all()
+#     return render_template("user.html", all_users=all_users)
 
-    def __repr__(self):
-        return f"id :{self.id}name:{self.name}"
+# class User(db.Model):
+#     id =db.Column(db.Integer,primary_key=True)
+#     name=db.Column(db.String(100))
+
+#     def __repr__(self):
+#         return f"id :{self.id}name:{self.name}"
     
 
 
  
-def generate_short_url():
-    characters = string.ascii_uppercase+string.ascii_lowercase
-    return "".join(random.choices(characters,k=6))
+# def generate_short_url():
+#     characters = string.ascii_uppercase+string.ascii_lowercase
+#     return "".join(random.choices(characters,k=6))
     
-@nanourl.route('/',methods=["GET","POST"])
-def index():
-    google_sh = shorten_url_pyshorteners("google.com")
-    shorten_url=None
-    if request.method=="POST":
-        shorten_url=generate_short_url()
-    return render_template("index.html",shorten_url=google_sh)
+# @nanourl.route('/',methods=["GET","POST"])
+# def index():
+#     google_sh = shorten_url_pyshorteners("google.com")
+#     shorten_url=None
+#     if request.method=="POST":
+#         shorten_url=generate_short_url()
+#     return render_template("index.html",shorten_url=google_sh)
 
 # Run the application
 if __name__=='__main__':
     with nanourl.app_context():
         db.create_all()
-        inspector = inspect(db.engine)
-        users=User.query.all()
-    print(inspector.get_table_names())
-    print(users)
+    #     inspector = inspect(db.engine)
+    #     users=User.query.all()
+    # print(inspector.get_table_names())
+    # print(users)
     nanourl.run(debug=True)
 
