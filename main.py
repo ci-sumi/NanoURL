@@ -51,10 +51,18 @@ def url_shortener():
     submit_original_url=Urlshortenr(original_url=long_url)
     db.session.add(submit_original_url)
     db.session.flush()
-    short_code=encode_62(submit_original_url.id)
+    offset=100000
+    short_code=encode_62(submit_original_url.id+offset)
     submit_original_url.short_url=short_code
     db.session.commit()
-    return f"{long_url} {short_code} is saved"
+    display_url=f"http://nanourl.com/{short_code}"
+    return f"{display_url} is saved"
+
+def decode_62(short_code):
+    num=0
+    for char in short_code:
+        num=num*62+BASE62.index(char)
+    return num
 
     
 @nanourl.route("/")
