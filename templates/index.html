@@ -34,11 +34,11 @@
                     Generate Short URL</button>
             </div>
         </form>
-        {%if shorten_url %}
+        {%if display_url %}
         <div class="mt-6 bg-gray-100 p-4 rounded-xl text-center">
             <p class="text-xl text-green-600 break-all">
                 Your Generated code is :</p>
-            <strong class="text-xl text-green-600 break-all">{{shorten_url}}
+            <strong class="text-xl text-green-600 break-all">{{display_url}}
             </strong>
         </div>
         {% endif %}

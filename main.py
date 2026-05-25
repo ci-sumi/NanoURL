@@ -56,7 +56,7 @@ def url_shortener():
     submit_original_url.short_url=short_code
     db.session.commit()
     display_url=f"http://nanourl.com/{short_code}"
-    return f"{display_url} is saved"
+    return render_template("index.html",display_url=display_url)
 
 def decode_62(short_code):
     num=0
