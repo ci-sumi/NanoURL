@@ -43,12 +43,8 @@ def encode_62(num):
 @nanourl.route("/shorten",methods=["POST"])
 def url_shortener():
     long_url=request.form.get("url_sumi").strip()
-    if not long_url:
-        return "Please provide a valid URL"
-    if not long_url.startswith(("http://","https://")):
+    if not long_url or not long_url.startswith(("http://","https://")) or " " in long_url:
         return "Invalid Url"
-    if " " in long_url:
-        return "Space is not allowed"
     existing_url=Urlshortenr.query.filter_by(original_url=long_url).first()
     if existing_url:
         return f"{existing_url.short_url}"
