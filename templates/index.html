@@ -42,10 +42,12 @@
         py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                     Copy
                 </button>
-                <button class="bg-purple-500 hover:bg-blue-400 text-white font-bold 
+                <form action="{{ display_url }}" target="_blank" method="GET" class="inline-block">
+                    <button type="submit" class="bg-purple-500 hover:bg-blue-400 text-white font-bold 
         py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
-                    View the site
-                </button>
+                        Visit the Site
+                    </button>
+                </form>
             </div>
             {% endif %}
 
