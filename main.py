@@ -55,7 +55,7 @@ def url_shortener():
     short_code=encode_62(submit_original_url.id+offset)
     submit_original_url.short_url=short_code
     db.session.commit()
-    display_url=f"http://nanourl.com/{short_code}"
+    display_url=f"http://127.0.0.1:5000/{short_code}"
     return render_template("index.html",display_url=display_url)
 
 def decode_62(short_code):
@@ -63,6 +63,16 @@ def decode_62(short_code):
     for char in short_code:
         num=num*62+BASE62.index(char)
     return num
+
+
+@nanourl.route("/<short_code>")
+def redirect_short_url(short_code):
+    decode_num=decode_62(short_code)
+    db_id=decode_num-100000
+    original_url=Urlshortenr.query.get(db_id)
+    if original_url:
+        return redirect(original_url.original_url)
+    return "URL not found",404
 
     
 @nanourl.route("/")
