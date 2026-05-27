@@ -34,11 +34,10 @@
             <div class="mt-6 bg-gray-100 p-4 rounded-xl text-center">
                 <p class="text-xl text-green-600 break-all">
                     Your Generated code is :</p>
-                <strong class="text-xl text-green-600 break-all">{{display_url}}
-                </strong>
+                <strong class="text-xl text-green-600 break-all" id="url-text">{{display_url}}</strong>
             </div>
             <div id="actions" class="flex justify-center mt-6 gap-4">
-                <button class="bg-purple-500 hover:bg-blue-400 text-white font-bold 
+                <button onclick="handlecopy()" class="bg-purple-500 hover:bg-blue-400 text-white font-bold 
         py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                     Copy
                 </button>
@@ -52,14 +51,19 @@
             {% endif %}
 
     </main>
-    <!-- <script>
-        function showButtons(event) {
-            event.preventDefault(); // Prevent form submission
-            console.log("Button clicked");
-            document.getElementById("actions").classList.remove('hidden');
-            document.getElementById("actions").classList.add('flex');
-        }
-    </script> -->
+</body>
+<script>
+    function handlecopy() {
+        const urlText = document.getElementById('url-text').textContent;
+        navigator.clipboard.writeText(urlText)
+            .then(() => {
+                alert('URL copied to clipboard!');
+            })
+            .catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+    }
+</script>
 </body>
 
 </html>
