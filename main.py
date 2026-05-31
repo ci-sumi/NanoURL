@@ -55,7 +55,7 @@ def url_shortener():
     short_code=encode_62(submit_original_url.id+offset)
     submit_original_url.short_url=short_code
     db.session.commit()
-    display_url=f"http://127.0.0.1:5000/{short_code}"
+    display_url=f"nano-url-nine.vercel.app/{short_code}"
     return render_template("index.html",display_url=display_url)
 
 def decode_62(short_code):
