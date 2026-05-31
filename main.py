@@ -1,5 +1,6 @@
 
 import datetime
+import os
 
 from flask import Flask, app,redirect,render_template,request
 from flask_sqlalchemy import SQLAlchemy
@@ -14,8 +15,11 @@ from tools.url_shortner import shorten_url_pyshorteners
 # To Store the short URL and their associated URLS
 url_map={}
 nanourl=Flask(__name__)
+database_uri=os.getenv("DATABASE_URI","sqlite:///site.db")
+if database_uri.startswith("postgress:///"):
+    database_uri=database_uri.replace("postgress:///","postgresql://")
 #Configuring the database
-nanourl.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+nanourl.config['SQLALCHEMY_DATABASE_URI'] = database_uri
 nanourl.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #Creating the database instance
 db=SQLAlchemy(nanourl)
