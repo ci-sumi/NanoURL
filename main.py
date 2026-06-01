@@ -15,9 +15,14 @@ from tools.url_shortner import shorten_url_pyshorteners
 # To Store the short URL and their associated URLS
 url_map={}
 nanourl=Flask(__name__)
-database_uri=os.getenv("DATABASE_URI","sqlite:///site.db")
-if database_uri.startswith("postgress:///"):
-    database_uri=database_uri.replace("postgress:///","postgresql://")
+app=nanourl
+database_uri = os.getenv("DATABASE_URI") or os.getenv("DATABASE_URL") or os.getenv("POSTGRES_URL") or "sqlite:///site.db"
+if database_uri.startswith("postgres://"):
+    database_uri = database_uri.replace("postgres://", "postgresql://", 1)
+elif database_uri.startswith("postgress://"):
+    database_uri = database_uri.replace("postgress://", "postgresql://", 1)
+elif database_uri.startswith("postgress:///"):
+    database_uri = database_uri.replace("postgress:///", "postgresql://", 1)
 #Configuring the database
 nanourl.config['SQLALCHEMY_DATABASE_URI'] = database_uri
 nanourl.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
