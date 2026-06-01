@@ -57,7 +57,9 @@ def url_shortener():
     existing_url=Urlshortenr.query.filter_by(original_url=long_url).first()
     if existing_url:
         return f"{existing_url.short_url}"
-    submit_original_url=Urlshortenr(original_url=long_url)
+    # Generate a temporary random placeholder short URL to satisfy PostgreSQL Not Null constraint during flush
+    temp_short = "".join(random.choices(BASE62, k=10))
+    submit_original_url=Urlshortenr(original_url=long_url, short_url=temp_short)
     db.session.add(submit_original_url)
     db.session.flush()
     offset=100000
@@ -76,6 +78,9 @@ def decode_62(short_code):
 
 @nanourl.route("/<short_code>")
 def redirect_short_url(short_code):
+    # Only try to decode if the short_code contains valid BASE62 characters
+    if not all(char in BASE62 for char in short_code):
+        return "URL not found", 404
     decode_num=decode_62(short_code)
     db_id=decode_num-100000
     original_url=Urlshortenr.query.get(db_id)
