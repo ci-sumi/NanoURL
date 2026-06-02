@@ -56,7 +56,9 @@ def url_shortener():
         return "Invalid Url"
     existing_url=Urlshortenr.query.filter_by(original_url=long_url).first()
     if existing_url:
-        return f"{existing_url.short_url}"
+        display_existing_url = f"{existing_url.short_url}"
+        display_existing_url = f"{request.host_url}{display_existing_url}"
+        return render_template("index.html",display_existing_url=display_existing_url)
     # Generate a temporary random placeholder short URL to satisfy PostgreSQL Not Null constraint during flush
     temp_short = "".join(random.choices(BASE62, k=10))
     submit_original_url=Urlshortenr(original_url=long_url, short_url=temp_short)
