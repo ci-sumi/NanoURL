@@ -53,7 +53,7 @@ def encode_62(num):
 def url_shortener():
     long_url=request.form.get("url_sumi").strip()
     if not long_url or not long_url.startswith(("http://","https://")) or " " in long_url:
-        return "Invalid Url"
+        return render_template("index.html",error="Invalid URL")
     existing_url=Urlshortenr.query.filter_by(original_url=long_url).first()
     if existing_url:
         display_existing_url = f"{existing_url.short_url}"

@@ -30,6 +30,13 @@
                         Generate Short URL</button>
                 </div>
             </form>
+            {%if error %}
+            <div class="mt-6 bg-gray-100 p-4 rounded-xl text-center">
+                <p class="text-xl text-red-600 break-all">
+                    Error: {{ error }}
+                </p>
+            </div>
+            {% endif %}
             {%if display_existing_url %}
             <div class="mt-6 bg-gray-100 p-4 rounded-xl text-center">
                 <p class="text-xl text-green-600 break-all">
