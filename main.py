@@ -38,6 +38,7 @@ class Urlshortenr(db.Model):
  
  
 BASE62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+SEED=8723491
 def encode_62(num):
     if num==0:
         return BASE62[0]
@@ -64,8 +65,8 @@ def url_shortener():
     submit_original_url=Urlshortenr(original_url=long_url, short_url=temp_short)
     db.session.add(submit_original_url)
     db.session.flush()
-    offset=100000
-    short_code=encode_62(submit_original_url.id+offset)
+    value=(submit_original_url.id * 1597 + SEED)
+    short_code=encode_62(value).rjust(6, '0')
     submit_original_url.short_url=short_code
     db.session.commit()
     display_url = f"{request.host_url}{short_code}"
@@ -84,7 +85,7 @@ def redirect_short_url(short_code):
     if not all(char in BASE62 for char in short_code):
         return "URL not found", 404
     decode_num=decode_62(short_code)
-    db_id=decode_num-100000
+    db_id=(decode_num-(SEED))//1597
     original_url=Urlshortenr.query.get(db_id)
     if original_url:
         return redirect(original_url.original_url)

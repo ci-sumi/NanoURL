@@ -39,7 +39,7 @@
             {%if display_existing_url %}
             <div class="mt-6 bg-gray-100 p-4 rounded-xl text-center">
                 <p class="text-xl text-black break-all">
-                    Shorturl already exists :</p>
+                    Here's your short url. :</p>
                 <strong class="text-xl text-black break-all" id="url-text">{{display_existing_url}}</strong>
                 <div id="actions" class="flex justify-center mt-6 gap-4">
                 <button onclick="handlecopy()" class="bg-blue-800 hover:bg-blue-700
@@ -57,9 +57,9 @@
             </div>
             {% elif display_url %}
             <div class="mt-6 bg-gray-100 p-4 rounded-xl text-center">
-                <p class="text-xl text-green-600 break-all">
+                <p class="text-xl text-gre-600 break-all">
                     Your Generated code is :</p>
-                <strong class="text-xl text-green-600 break-all" id="url-text">{{display_url}}</strong>
+                <strong class="text-xl text-black-600 break-all" id="url-text">{{display_url}}</strong>
             </div>
             <div id="actions" class="flex justify-center mt-6 gap-4">
                 <button onclick="handlecopy()" class="bg-purple-500 hover:bg-blue-400 text-white font-bold 
