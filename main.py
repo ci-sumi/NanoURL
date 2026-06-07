@@ -52,7 +52,7 @@ def encode_62(num):
 #Save the longurl to Database
 @nanourl.route("/shorten",methods=["POST"])
 def url_shortener():
-    long_url=request.form.get("url_sumi").strip()
+    long_url=request.form.get("url_sumi").strip().rstrip('/')
     if not long_url or not long_url.startswith(("http://","https://")) or " " in long_url:
         return render_template("index.html",error="Invalid URL")
     existing_url=Urlshortenr.query.filter_by(original_url=long_url).first()
