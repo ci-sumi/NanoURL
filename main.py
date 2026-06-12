@@ -2,6 +2,8 @@
 import datetime
 import os
 from hashids import Hashids
+from dotenv import load_dotenv
+load_dotenv()
 
 from flask import Flask, app,redirect,render_template,request
 from flask_sqlalchemy import SQLAlchemy
@@ -12,6 +14,8 @@ import random
 
 from sqlalchemy import inspect
 from tools.url_shortner import shorten_url_pyshorteners
+
+hashids = Hashids(salt=os.getenv("HASHIDS_SALT"), min_length=6)
 
 # To Store the short URL and their associated URLS
 url_map={}
@@ -62,12 +66,13 @@ def url_shortener():
         display_existing_url = f"{request.host_url}{display_existing_url}"
         return render_template("index.html",display_existing_url=display_existing_url)
     # Generate a temporary random placeholder short URL to satisfy PostgreSQL Not Null constraint during flush
-    temp_short = "".join(random.choices(BASE62, k=10))
-    submit_original_url=Urlshortenr(original_url=long_url, short_url=temp_short)
+    # temp_short = "".join(random.choices(hashids.alphabet, k=10))
+    submit_original_url=Urlshortenr(original_url=long_url)
     db.session.add(submit_original_url)
     db.session.flush()
-    value=(submit_original_url.id * 1597 + SEED)
-    short_code=encode_62(value).rjust(6, '0')
+    # value=(submit_original_url.id * 1597 + SEED)
+    # short_code=encode_62(value).rjust(6, '0')
+    short_code=hashids.encode(submit_original_url.id)
     submit_original_url.short_url=short_code
     db.session.commit()
     display_url = f"{request.host_url}{short_code}"
