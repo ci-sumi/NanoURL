@@ -63,7 +63,7 @@ def url_shortener():
     existing_url=Urlshortenr.query.filter_by(original_url=long_url).first()
     if existing_url:
         display_existing_url = f"{existing_url.short_url}"
-        display_existing_url = f"{request.host_url}{display_existing_url}"
+        display_existing_url = f"{request.host_url.rstrip('/')}/{display_existing_url}"
         return render_template("index.html",display_existing_url=display_existing_url)
     # Generate a temporary random placeholder short URL to satisfy PostgreSQL Not Null constraint during flush
     # temp_short = "".join(random.choices(hashids.alphabet, k=10))
@@ -75,7 +75,7 @@ def url_shortener():
     short_code=hashids.encode(submit_original_url.id)
     submit_original_url.short_url=short_code
     db.session.commit()
-    display_url = f"{request.host_url}{short_code}"
+    display_url = f"{request.host_url.rstrip('/')}/{short_code}"
     return render_template("index.html",display_url=display_url)
 
 # def decode_62(short_code):
