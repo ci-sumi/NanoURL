@@ -65,4 +65,11 @@ rm -f .git/index.lock
 Issue : Git created a teporary lock file(A git process was interupted or git didn't cleanu properly)
 
 Antigravity
+Deployment
+Scrambled data or piece of information beyond recognition.
+They are designed to be irreversible .
+To reduce the collion salting can be applied.(Random data can be added before hashing)
+
+
+
 
