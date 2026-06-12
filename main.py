@@ -42,18 +42,18 @@ class Urlshortenr(db.Model):
  
  
  
-BASE62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-SEED=8723491
-def encode_62(num):
-    if num==0:
-        return BASE62[0]
-    arr=[]
-    while num:
-        rem = num%62
-        arr.append(BASE62[rem])
-        num//=62
-    arr.reverse()
-    return "".join(arr)   
+# BASE62 = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+# SEED=8723491
+# def encode_62(num):
+#     if num==0:
+#         return BASE62[0]
+#     arr=[]
+#     while num:
+#         rem = num%62
+#         arr.append(BASE62[rem])
+#         num//=62
+#     arr.reverse()
+#     return "".join(arr)   
 #Save the longurl to Database
 @nanourl.route("/shorten",methods=["POST"])
 def url_shortener():
@@ -78,20 +78,20 @@ def url_shortener():
     display_url = f"{request.host_url}{short_code}"
     return render_template("index.html",display_url=display_url)
 
-def decode_62(short_code):
-    num=0
-    for char in short_code:
-        num=num*62+BASE62.index(char)
-    return num
+# def decode_62(short_code):
+#     num=0
+#     for char in short_code:
+#         num=num*62+BASE62.index(char)
+#     return num
 
 
 @nanourl.route("/<short_code>")
 def redirect_short_url(short_code):
     # Only try to decode if the short_code contains valid BASE62 characters
-    if not all(char in BASE62 for char in short_code):
-        return "URL not found", 404
-    decode_num=decode_62(short_code)
-    db_id=(decode_num-(SEED))//1597
+    # if not all(char in BASE62 for char in short_code):
+    #     return "URL not found", 404
+    decode_num=hashids.decode(short_code)[0]
+    db_id=decode_num
     original_url=Urlshortenr.query.get(db_id)
     if original_url:
         return redirect(original_url.original_url)
