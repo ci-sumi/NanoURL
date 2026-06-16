@@ -90,8 +90,10 @@ def redirect_short_url(short_code):
     # Only try to decode if the short_code contains valid BASE62 characters
     # if not all(char in BASE62 for char in short_code):
     #     return "URL not found", 404
-    decode_num=hashids.decode(short_code)[0]
-    db_id=decode_num
+    decode_num=hashids.decode(short_code)
+    if not decode_num:
+        return "URL not found", 404
+    db_id=decode_num[0]
     original_url=Urlshortenr.query.get(db_id)
     if original_url:
         return redirect(original_url.original_url)
