@@ -45,6 +45,37 @@ git branch -u origin/main main
 
 ```
 
+## Vercel Deployment
+
+1. **Prerequisites**
+   - A Vercel Account.
+   - An external PostgreSQL database (e.g., Supabase, Neon, or Vercel Postgres).
+   - A configuration file `vercel.json` in the root (already exists).
+   - A `requirements.txt` file (already exists).
+
+2. **Setup Environment Variables on Vercel**
+   Add the following environment variables in your Vercel Project Settings:
+   - `DATABASE_URL`: Your production PostgreSQL connection string.
+   - `HASHIDS_SALT`: A secret key/salt for encoding short URLs.
+
+3. **Deploy using Vercel CLI**
+   Install the Vercel CLI and run the deploy command:
+   ```sh
+   # Install Vercel CLI globally
+   npm install -g vercel
+
+   # Login to your Vercel account
+   vercel login
+
+   # Deploy the project
+   vercel
+   ```
+   Follow the prompts to link and deploy your application.
+
+4. **Deploy via GitHub (Recommended)**
+   - Push your code to a GitHub repository.
+   - Import the repository in your Vercel Dashboard.
+   - Configure the environment variables in the settings and click **Deploy**. Vercel will automatically redeploy on every commit to `main`.
 
 ## References
 
