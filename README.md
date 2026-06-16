@@ -4,16 +4,60 @@
 
 A URL shortener written in Python.
 
+## Table of Contents
+- [Features](#features)
+- [How It Works](#how-it-works)
+- [Developers](#developers)
+- [Tech Stack](#tech-stack)
+- [Environment Variables](#environment-variables)
+- [Local Deployment](#local-deployment)
+- [Vercel Deployment](#vercel-deployment)
+- [Troubleshooting & Git Tips](#troubleshooting--git-tips)
+- [References](#references)
+
+## Features
+- **URL Shortening**: Shorten long HTTP/HTTPS URLs.
+- **Hashids Encoding**: Uses `hashids` to encode auto-incremented IDs to create short, unique URL codes.
+- **Database Support**: Configured to run on SQLite locally and PostgreSQL in production (e.g., on Vercel).
+- **Redirection**: Fast redirection to original URLs via short codes.
+
+## How It Works
+
+This flowchart explains the flow when a user requests to shorten a URL:
+
+```mermaid
+graph TD
+    User([User]) -->|Submits Long URL| Web[Flask Web App]
+    Web -->|Checks Database| DB{URL exists?}
+    DB -->|Yes| Return[Return existing Short URL]
+    DB -->|No| Insert[Insert Long URL + temp_short]
+    Insert -->|Flushes| GetID[Retrieve Database ID]
+    GetID -->|Encodes ID| Hashids[Generate Final Short Code]
+    Hashids -->|Updates & Commits| DB
+    Hashids -->|Returns| Return
+```
+
+
 ## Developers
 
 - Her Majesty Sumi [GitHub](https://github.com/ci-sumi) / [Linkedin](https://www.linkedin.com/in/sumi-tharayil-surendran-33ba69268/)
 - Tomislav Dukez: [GitHub](https://github.com/tomdu3) / [Linkedin](https://www.linkedin.com/in/tomislav-dukez)
 
-## Tech
+## Tech Stack
 
-- [UV](https://astral.sh/uv/) - A Rust based Python package and project management tool.
-- [Flask](https://flask.palletsprojects.com/en/2.2.x/) - A lightweight web framework based on Python and used to build web applications and APIs.
-- [PyShorteners](https://github.com/ellisonleao/pyshorteners) - Python library that bridges to various third party shortening services like TinyUrl,Bitly etc..
+- [UV](https://astral.sh/uv/) - A Rust-based Python package and project management tool.
+- [Flask](https://flask.palletsprojects.com/en/2.2.x/) - A lightweight Python web framework.
+- [SQLAlchemy](https://www.sqlalchemy.org/) - Database ORM for managing URL models.
+- [Hashids](https://hashids.org/) - Generate short, unique hashes from numbers.
+- [PyShorteners](https://github.com/ellisonleao/pyshorteners) - Python library bridging to third-party shortening services.
+
+## Environment Variables
+
+Create a `.env` file in the root directory and configure:
+```env
+DATABASE_URI="sqlite:///site.db"   # For local development
+HASHIDS_SALT="your-secret-salt"    # Used to obscure auto-incremented IDs
+```
 
 ## Local Deployment
 
@@ -30,19 +74,10 @@ uv sync
 .venv\Scripts\activate
 ```
 
-1. Run script
+2. Run script
 
 ```sh
 uv run main.py
-```
-
-Git tips from Tomi
-```sh
-git remote show origin
-[-Scenario- git pull was pulling from origin/master
-git push was pushing to origin/main]
-git branch -u origin/main main
-
 ```
 
 ## Vercel Deployment
@@ -77,6 +112,28 @@ git branch -u origin/main main
    - Import the repository in your Vercel Dashboard.
    - Configure the environment variables in the settings and click **Deploy**. Vercel will automatically redeploy on every commit to `main`.
 
+## Troubleshooting & Git Tips
+
+### Git Branch Sync Issue
+If `git pull` pulls from `origin/master` but `git push` pushes to `origin/main`, link them:
+```sh
+git remote show origin
+git branch -u origin/main main
+```
+
+### Git index.lock Issue
+If you run into an index lock issue where a process was interrupted:
+![image](https://hackmd.io/_uploads/r1TWp8Q0Zx.png)
+
+Solve it by running:
+```sh
+rm -f .git/index.lock
+```
+
+### Encryption & Salting Notes
+- **Hashing/Encoding**: Scrambling data beyond recognition.
+- **Salting**: Adding random data (salt) to the input before hashing to increase security and prevent collisions.
+
 ## References
 
 - [Title 1](https://medium.com/@dieggo.filipe/uv-the-new-python-package-manager-you-need-to-know-492a147af74c)
@@ -84,22 +141,6 @@ git branch -u origin/main main
 - [Video 2](https://youtu.be/5rTwOt9Qgik)
 - [Flask Video](https://www.youtube.com/watch?v=mqhxxeeTbu0&list=PLzMcBGfZo4-n4vJJybUVV3Un_NFS5EOgX)
 - [Flask Video 2](https://www.youtube.com/watch?v=45P3xQPaYxc)
-
-I came across a Git issue in our main project NanoURL
-![image](https://hackmd.io/_uploads/r1TWp8Q0Zx.png)
-
-it solved after running this command
-```sh
-rm -f .git/index.lock
-```
-
-Issue : Git created a teporary lock file(A git process was interupted or git didn't cleanu properly)
-
-Antigravity
-Deployment
-Scrambled data or piece of information beyond recognition.
-They are designed to be irreversible .
-To reduce the collion salting can be applied.(Random data can be added before hashing)
 
 
 
