@@ -1,7 +1,8 @@
 # NanoURL
 
-![Flask Image](flask.jpg)
+![AmIResponsive](amiresponsive.png)
 
+![Flask Image](flask.jpg)
 A URL shortener written in Python.
 
 ## Table of Contents
