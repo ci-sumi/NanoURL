@@ -10,13 +10,14 @@
 - [Features](#features)
 - [How It Works](#how-it-works)
 - [Database Schema](#database-schema)
-- [Developers](#developers)
-- [Tech Stack](#tech-stack)
+
+- [Tech Stack & Tools](#tech-stack--tools)
 - [Environment Variables](#environment-variables)
 - [Local Deployment](#local-deployment)
 - [Vercel Deployment](#vercel-deployment)
 - [Troubleshooting & Git Tips](#troubleshooting--git-tips)
 - [References](#references)
+- [Developers](#developers)
 - [Acknowledgement](#acknowledgement)
 
 
@@ -72,7 +73,6 @@ erDiagram
 - [Hashids](https://hashids.org/) - Generate short, unique hashes from numbers.
 - [SQLite](https://www.sqlite.org/) - Lightweight SQL database engine used for local development.
 - [PostgreSQL](https://www.postgresql.org/) - Powerful, open-source object-relational database system used in production.
-- [PyShorteners](https://github.com/ellisonleao/pyshorteners) - Python library bridging to third-party shortening services.
 
 
 **How to install tailwind and use it with Flask**
