@@ -15,13 +15,15 @@ A URL shortener written in Python.
 - [Vercel Deployment](#vercel-deployment)
 - [Troubleshooting & Git Tips](#troubleshooting--git-tips)
 - [References](#references)
+- [Acknowledgement ](#acknowledgement)
+
 
 ## Features
 - **URL Shortening**: Shorten long HTTP/HTTPS URLs.
 - **Hashids Encoding**: Uses `hashids` to encode auto-incremented IDs to create short, unique URL codes.
 - **Database Support**: Configured to run on SQLite locally and PostgreSQL in production (e.g., on Vercel).
 - **Redirection**: Fast redirection to original URLs via short codes.
-
+- **Copy to Clipboard**: Copy the shortened URL to the clipboard.
 ## How It Works
 
 This flowchart explains the flow when a user requests to shorten a URL:
@@ -142,7 +144,6 @@ rm -f .git/index.lock
 - [Video 2](https://youtu.be/5rTwOt9Qgik)
 - [Flask Video](https://www.youtube.com/watch?v=mqhxxeeTbu0&list=PLzMcBGfZo4-n4vJJybUVV3Un_NFS5EOgX)
 - [Flask Video 2](https://www.youtube.com/watch?v=45P3xQPaYxc)
-
-
-
-
+-[Codepen](https://codepen.io/iamwillie/pen/bGVVeeW)
+## Acknowledgement 
+My Friend,collabrator and mentor Tomislav Dukez [GitHub](https://github.com/tomdu3) and [Linkedin](https://www.linkedin.com/in/tomislav-dukez/).This project would not have happend without your knowledge, guidence and motivation.I truly meant it Tomi.Thank you.
