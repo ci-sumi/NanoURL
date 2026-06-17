@@ -1,4 +1,5 @@
 # NanoURL
+**NanoURL** is a simple, lightweight, and self-hosted URL shortener web application. It takes long, complex URLs and converts them into short, unique, and easy-to-share links. The application is built using Python and Flask, storing URLs in SQLite locally and PostgreSQL in production, while using `hashids` to safely encode database primary keys into clean short codes.
 
 ![AmIResponsive](amiresponsive.png)
 
@@ -15,7 +16,7 @@ A URL shortener written in Python.
 - [Vercel Deployment](#vercel-deployment)
 - [Troubleshooting & Git Tips](#troubleshooting--git-tips)
 - [References](#references)
-- [Acknowledgement ](#acknowledgement)
+- [Acknowledgement](#acknowledgement)
 
 
 ## Features
