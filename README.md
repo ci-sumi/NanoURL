@@ -4,11 +4,12 @@
 ![AmIResponsive](amiresponsive.png)
 
 ![Flask Image](flask.jpg)
-A URL shortener written in Python.
+
 
 ## Table of Contents
 - [Features](#features)
 - [How It Works](#how-it-works)
+- [Database Schema](#database-schema)
 - [Developers](#developers)
 - [Tech Stack](#tech-stack)
 - [Environment Variables](#environment-variables)
@@ -39,6 +40,20 @@ graph TD
     GetID -->|Encodes ID| Hashids[Generate Final Short Code]
     Hashids -->|Updates & Commits| DB
     Hashids -->|Returns| Return
+```
+
+## Database Schema
+
+The application uses a single database table to map original URLs to their shortened counterparts:
+
+```mermaid
+erDiagram
+    URLSHORTENR {
+        int id PK "Primary Key (Auto-Increment)"
+        string original_url "nullable=False, max_length=500"
+        string short_url "nullable=True, unique=True, max_length=10"
+        datetime created_at "default=now()"
+    }
 ```
 
 
