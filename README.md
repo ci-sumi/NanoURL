@@ -70,6 +70,24 @@ erDiagram
 - [Hashids](https://hashids.org/) - Generate short, unique hashes from numbers.
 - [PyShorteners](https://github.com/ellisonleao/pyshorteners) - Python library bridging to third-party shortening services.
 
+**How to install tailwind and use it with Flask**
+```sh    
+npm install -D tailwindcss@3
+npx tailwindcss init -p
+static/src/input.css
+/* static/input.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/*Make sure tailwind.config.js */
+content: ["./templates/index.html"],
+static/css/output.css
+/* Buid Tailwind */
+npx tailwindcss -i ./static/src/input.css -o ./static/css/output.css --watch
+/* Link css in Flask HTML */
+<link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+```
+
 ## Environment Variables
 
 Create a `.env` file in the root directory and configure:
@@ -161,5 +179,8 @@ rm -f .git/index.lock
 - [Flask Video](https://www.youtube.com/watch?v=mqhxxeeTbu0&list=PLzMcBGfZo4-n4vJJybUVV3Un_NFS5EOgX)
 - [Flask Video 2](https://www.youtube.com/watch?v=45P3xQPaYxc)
 -[Codepen](https://codepen.io/iamwillie/pen/bGVVeeW)
+- [Tailwind Crash Course Video](https://youtu.be/6biMWgD6_JY)
+- [How To Use Python On A Web Page With Jinja2 - Flask Fridays #2](https://youtu.be/4yaG-jFfePc)
+- [Python Using For Loop In Flask](https://www.geeksforgeeks.org/python/python-using-for-loop-in-flask/)
 ## Acknowledgement 
 My Friend,collabrator and mentor Tomislav Dukez [GitHub](https://github.com/tomdu3) and [Linkedin](https://www.linkedin.com/in/tomislav-dukez/).This project would not have happend without your knowledge, guidence and motivation.I truly meant it Tomi.Thank you.
