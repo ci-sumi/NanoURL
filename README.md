@@ -178,7 +178,7 @@ rm -f .git/index.lock
 
 ## References
 
-- [Title 1](https://medium.com/@dieggo.filipe/uv-the-new-python-package-manager-you-need-to-know-492a147af74c)
+
 - [Video 1](https://www.youtube.com/watch?v=AMdG7IjgSPM)
 - [Video 2](https://youtu.be/5rTwOt9Qgik)
 - [Flask Video](https://www.youtube.com/watch?v=mqhxxeeTbu0&list=PLzMcBGfZo4-n4vJJybUVV3Un_NFS5EOgX)
@@ -188,4 +188,4 @@ rm -f .git/index.lock
 - [How To Use Python On A Web Page With Jinja2 - Flask Fridays #2](https://youtu.be/4yaG-jFfePc)
 - [Python Using For Loop In Flask](https://www.geeksforgeeks.org/python/python-using-for-loop-in-flask/)
 ## Acknowledgement 
-My Friend,collabrator and mentor Tomislav Dukez [GitHub](https://github.com/tomdu3) and [Linkedin](https://www.linkedin.com/in/tomislav-dukez/).This project would not have happend without your knowledge, guidence and motivation.I truly meant it Tomi.Thank you.
+My Friend,collabrator and mentor Tomislav Dukez [GitHub](https://github.com/tomdu3), [Linkedin](https://www.linkedin.com/in/tomislav-dukez/).This project would not have happend without your knowledge, guidence and motivation.I truly meant it Tomi.Thank you.
