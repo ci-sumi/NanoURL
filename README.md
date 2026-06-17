@@ -66,9 +66,14 @@ erDiagram
 
 - [UV](https://astral.sh/uv/) - A Rust-based Python package and project management tool.
 - [Flask](https://flask.palletsprojects.com/en/2.2.x/) - A lightweight Python web framework.
+- [Jinja2](https://jinja.palletsprojects.com/) - Modern and designer-friendly templating engine for Python, integrated into Flask.
+- [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework for rapid UI styling.
 - [SQLAlchemy](https://www.sqlalchemy.org/) - Database ORM for managing URL models.
 - [Hashids](https://hashids.org/) - Generate short, unique hashes from numbers.
+- [SQLite](https://www.sqlite.org/) - Lightweight SQL database engine used for local development.
+- [PostgreSQL](https://www.postgresql.org/) - Powerful, open-source object-relational database system used in production.
 - [PyShorteners](https://github.com/ellisonleao/pyshorteners) - Python library bridging to third-party shortening services.
+
 
 **How to install tailwind and use it with Flask**
 ```sh    
