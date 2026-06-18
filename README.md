@@ -1,5 +1,6 @@
 # NanoURL
-**NanoURL** is a simple, lightweight, and self-hosted URL shortener web application. It takes long, complex URLs and converts them into short, unique, and easy-to-share links. The application is built using Python and Flask, storing URLs in SQLite locally and PostgreSQL in production, while using `hashids` to safely encode database primary keys into clean short codes.
+**NanoURL** is a simple, lightweight, and self-hosted URL shortener web application. It takes long, complex URLs and converts them into short, unique, and easy-to-share links. The application is built using Python and Flask, storing URLs in SQLite locally and PostgreSQL in production, while using `hashids` with custom salting to safely obfuscate database primary keys into unique, clean short codes.
+The project is successfully deployed on [Vercel](https://nano-url-nine.vercel.app/)
 
 ![AmIResponsive](amiresponsive.png)
 
@@ -10,7 +11,6 @@
 - [Features](#features)
 - [How It Works](#how-it-works)
 - [Database Schema](#database-schema)
-
 - [Tech Stack & Tools](#tech-stack--tools)
 - [Environment Variables](#environment-variables)
 - [Local Deployment](#local-deployment)
@@ -63,7 +63,7 @@ erDiagram
 - Her Majesty Sumi [GitHub](https://github.com/ci-sumi) / [Linkedin](https://www.linkedin.com/in/sumi-tharayil-surendran-33ba69268/)
 - Tomislav Dukez: [GitHub](https://github.com/tomdu3) / [Linkedin](https://www.linkedin.com/in/tomislav-dukez)
 
-## Tech Stack
+## Tech Stack & Tools
 
 - [UV](https://astral.sh/uv/) - A Rust-based Python package and project management tool.
 - [Flask](https://flask.palletsprojects.com/en/2.2.x/) - A lightweight Python web framework.
