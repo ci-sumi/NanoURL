@@ -15,7 +15,7 @@ The project is successfully deployed on [Vercel](https://nano-url-nine.vercel.ap
 - [Environment Variables](#environment-variables)
 - [Local Deployment](#local-deployment)
 - [Vercel Deployment](#vercel-deployment)
-- [Troubleshooting & Git Tips](#troubleshooting--git-tips)
+- [Bugs](#bugs)
 - [References](#references)
 - [Developers](#developers)
 - [Acknowledgement](#acknowledgement)
@@ -58,11 +58,6 @@ erDiagram
 ```
 
 
-## Developers
-
-- Her Majesty Sumi [GitHub](https://github.com/ci-sumi) / [Linkedin](https://www.linkedin.com/in/sumi-tharayil-surendran-33ba69268/)
-- Tomislav Dukez: [GitHub](https://github.com/tomdu3) / [Linkedin](https://www.linkedin.com/in/tomislav-dukez)
-
 ## Tech Stack & Tools
 
 - [UV](https://astral.sh/uv/) - A Rust-based Python package and project management tool.
@@ -72,7 +67,9 @@ erDiagram
 - [SQLAlchemy](https://www.sqlalchemy.org/) - Database ORM for managing URL models.
 - [Hashids](https://hashids.org/) - Generate short, unique hashes from numbers.
 - [SQLite](https://www.sqlite.org/) - Lightweight SQL database engine used for local development.
+- [Salting](https://www.geeksforgeeks.org/computer-networks/implementing-salting/)
 - [PostgreSQL](https://www.postgresql.org/) - Powerful, open-source object-relational database system used in production.
+- [Antigravity](https://antigravity.google/)-AI tool, I used Antigravity for deployment, README file creation, and diagram generation.
 
 
 **How to install tailwind and use it with Flask**
@@ -112,9 +109,6 @@ irm https://astral.sh/uv/install.ps1 | iex
 git clone https://github.com/ci-sumi/NanoURL.git
 cd NanoURL
 uv sync
-# activate virtual environment
-.venv\Scripts\activate
-```
 
 2. Run script
 
@@ -154,7 +148,7 @@ uv run main.py
    - Import the repository in your Vercel Dashboard.
    - Configure the environment variables in the settings and click **Deploy**. Vercel will automatically redeploy on every commit to `main`.
 
-## Troubleshooting & Git Tips
+## Bugs
 
 ### Git Branch Sync Issue
 If `git pull` pulls from `origin/master` but `git push` pushes to `origin/main`, link them:
@@ -165,11 +159,27 @@ git branch -u origin/main main
 
 ### Git index.lock Issue
 If you run into an index lock issue where a process was interrupted:
-![image](https://hackmd.io/_uploads/r1TWp8Q0Zx.png)
+
 
 Solve it by running:
 ```sh
 rm -f .git/index.lock
+```
+### Solving a PostgreSQL Not Null Violation 
+While building a URL shortener using Python, Flask, and SQLAlchemy, I needed the database-generated id to encode the final short URL.
+I called db.session.flush() to get the auto-incremented id. But PostgreSQL had a strict NOT NULL constraint on the short_url column:
+#Fails
+```sh
+submit_original_url = Urlshortenr(original_url=long_url)
+db.session.add(submit_original_url)
+db.session.flush()
+#Fix
+Generate a temporary random placeholder short URL to satisfy the constraint during flush, then overwrite it
+
+temp_short = "".join(random.choices(string.ascii_letters + string.digits, k=10))
+submit_original_url = Urlshortenr(original_url=long_url, short_url=temp_short)
+db.session.add(submit_original_url)
+db.session.flush() # ID is retrieved successfully!
 ```
 
 ### Encryption & Salting Notes
@@ -178,14 +188,19 @@ rm -f .git/index.lock
 
 ## References
 
-
-- [Video 1](https://www.youtube.com/watch?v=AMdG7IjgSPM)
-- [Video 2](https://youtu.be/5rTwOt9Qgik)
-- [Flask Video](https://www.youtube.com/watch?v=mqhxxeeTbu0&list=PLzMcBGfZo4-n4vJJybUVV3Un_NFS5EOgX)
+- [Video 1 UV - A Faster, All-in-One Package Manager to Replace Pip and Venv](https://www.youtube.com/watch?v=AMdG7IjgSPM)
+- [Video 2 Switching to UV](https://youtu.be/5rTwOt9Qgik)
+- [Flask Video 3](https://www.youtube.com/watch?v=mqhxxeeTbu0&list=PLzMcBGfZo4-n4vJJybUVV3Un_NFS5EOgX)
 - [Flask Video 2](https://www.youtube.com/watch?v=45P3xQPaYxc)
 -[Codepen](https://codepen.io/iamwillie/pen/bGVVeeW)
 - [Tailwind Crash Course Video](https://youtu.be/6biMWgD6_JY)
 - [How To Use Python On A Web Page With Jinja2 - Flask Fridays #2](https://youtu.be/4yaG-jFfePc)
 - [Python Using For Loop In Flask](https://www.geeksforgeeks.org/python/python-using-for-loop-in-flask/)
+
+
+## Developers
+- Her Majesty Sumi [GitHub](https://github.com/ci-sumi) / [Linkedin](https://www.linkedin.com/in/sumi-tharayil-surendran-33ba69268/)
+- Tomislav Dukez: [GitHub](https://github.com/tomdu3) / [Linkedin](https://www.linkedin.com/in/tomislav-dukez)
+
 ## Acknowledgement 
-My Friend,collabrator and mentor Tomislav Dukez [GitHub](https://github.com/tomdu3), [Linkedin](https://www.linkedin.com/in/tomislav-dukez/).This project would not have happend without your knowledge, guidence and motivation.I truly meant it Tomi.Thank you.
+My Friend,collabratora and mentor Tomislav Dukez [GitHub](https://github.com/tomdu3), [Linkedin](https://www.linkedin.com/in/tomislav-dukez/).This project would not have happend without your knowledge, guidence and motivation.I truly meant it Tomi.Thank you.
