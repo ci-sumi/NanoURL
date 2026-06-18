@@ -190,11 +190,11 @@ db.session.flush() # ID is retrieved successfully!
 
 - [Video 1 UV - A Faster, All-in-One Package Manager to Replace Pip and Venv](https://www.youtube.com/watch?v=AMdG7IjgSPM)
 - [Video 2 Switching to UV](https://youtu.be/5rTwOt9Qgik)
-- [Flask Video 3](https://www.youtube.com/watch?v=mqhxxeeTbu0&list=PLzMcBGfZo4-n4vJJybUVV3Un_NFS5EOgX)
-- [Flask Video 2](https://www.youtube.com/watch?v=45P3xQPaYxc)
--[Codepen](https://codepen.io/iamwillie/pen/bGVVeeW)
-- [Tailwind Crash Course Video](https://youtu.be/6biMWgD6_JY)
-- [How To Use Python On A Web Page With Jinja2 - Flask Fridays #2](https://youtu.be/4yaG-jFfePc)
+- [Video 3 Flask-How to Make Websites with Python](https://www.youtube.com/watch?v=mqhxxeeTbu0&list=PLzMcBGfZo4-n4vJJybUVV3Un_NFS5EOgX)
+- [Video 4 Python Flask Tutorial](https://www.youtube.com/watch?v=45P3xQPaYxc)
+-[Codepen UI design](https://codepen.io/iamwillie/pen/bGVVeeW)
+- [Video 5 Tailwind Crash Course ](https://youtu.be/6biMWgD6_JY)
+- [ Video 6 How To Use Python On A Web Page With Jinja2](https://youtu.be/4yaG-jFfePc)
 - [Python Using For Loop In Flask](https://www.geeksforgeeks.org/python/python-using-for-loop-in-flask/)
 
 
