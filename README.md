@@ -8,7 +8,7 @@ The project is successfully deployed on [Vercel](https://nano-url-nine.vercel.ap
 ![AmIResponsive](amiresponsive.png)
 
 <!-- Flask Icon -->
-<img src="./flask.jpg" width="100">
+<img src="static/imgs/flask-logo.svg" width="100">
 <!-- Postgres Icon -->
 <!-- <img src="./postgres.jpg" width="100"> -->
 <!-- TailwindCSS -->
