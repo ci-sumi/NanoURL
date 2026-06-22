@@ -5,14 +5,11 @@
 **NanoURL** is a simple, lightweight, and self-hosted URL shortener web application. It takes long, complex URLs and converts them into short, unique, and easy-to-share links. The application is built using Python and Flask, storing URLs in SQLite locally and PostgreSQL in production, while using `hashids` with custom salting to safely obfuscate database primary keys into unique, clean short codes.
 The project is successfully deployed on [Vercel](https://nano-url-nine.vercel.app/)
 
-![AmIResponsive](amiresponsive.png)
+![AmIResponsive](static/imgs/amiresponsive.png)
 
 <!-- Flask Icon -->
-<img src="static/imgs/flask-logo.svg" width="100">
-<!-- Postgres Icon -->
-<!-- <img src="./postgres.jpg" width="100"> -->
-<!-- TailwindCSS -->
-<!-- <img src="./tailwind.png" width="100"> -->
+<img src="static/imgs/flask-logo.svg" width="100"><img src= "static/imgs/Postgresql_elephant.svg.png" width= "100"><img src="static/imgs/tailwind.png" width="100">
+
 
 ## Table of Contents
 
@@ -243,6 +240,7 @@ db.session.flush() # ID is retrieved successfully!
 - [ Video 6 How To Use Python On A Web Page With Jinja2](https://youtu.be/4yaG-jFfePc)
 - [Python Using For Loop In Flask](https://www.geeksforgeeks.org/python/python-using-for-loop-in-flask/)
 - [Salting](https://www.geeksforgeeks.org/computer-networks/implementing-salting/)
+- [How to Make a URL Shortener with Flask and SQLite](https://www.digitalocean.com/community/tutorials/how-to-make-a-url-shortener-with-flask-and-sqlite)
 
 ## Developers
 
