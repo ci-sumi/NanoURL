@@ -39,6 +39,12 @@ The project is successfully deployed on [Vercel](https://nano-url-nine.vercel.ap
 
 ## How It Works
 
+### Demo
+
+<!-- TODO: add a link to the youtube video demoing the app, explaining the features, and the code -->
+
+### Flowchart
+
 This flowchart explains the flow when a user requests to shorten a URL:
 
 ```mermaid
