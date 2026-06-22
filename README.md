@@ -120,17 +120,16 @@ HASHIDS_SALT="your-secret-salt"    # Used to obscure auto-incremented IDs
 
 1. Installation
 
-````sh
+```sh
 irm https://astral.sh/uv/install.ps1 | iex
 git clone https://github.com/ci-sumi/NanoURL.git
 cd NanoURL
 uv sync
 
 2. Run script
-
-```sh
 uv run main.py
-````
+
+```
 
 #### Linux
 
