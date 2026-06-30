@@ -38,7 +38,8 @@ The project is successfully deployed on [Vercel](https://nano-url-nine.vercel.ap
 
 ### Demo
 
-<!-- TODO: add a link to the youtube video demoing the app, explaining the features, and the code -->
+https://www.loom.com/share/c280dabc3f584fc383222ce67d0d11fe
+
 
 ### Flowchart
 
