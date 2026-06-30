@@ -48,28 +48,28 @@ This flowchart explains the flow when a user requests to shorten a URL:
 ```mermaid
 graph TD
     User([User]) -->|Submits Long URL| Web[Flask Web App]
-    Web -->|Checks Database| DB{URL exists?}
+    Web -->|Validates URL| Valid{Is URL Valid?}
+    Valid -->|No| Error[Return 'Invalid URL' Error]
+    Valid -->|Yes| DB{URL exists in DB?}
     DB -->|Yes| Return[Return existing Short URL]
     DB -->|No| Insert[Insert Long URL + temp_short]
     Insert -->|Flushes| GetID[Retrieve Database ID]
-    GetID -->|Encodes ID| Hashids[Generate Final Short Code]
-    Hashids -->|Updates & Commits| DB
-    Hashids -->|Returns| Return
+    GetID -->|Encodes ID using Hashids| Hashids[Generate Final Short Code]
+    Hashids -->|Updates short_url & db.session.commit| Commit[Commit to DB]
+    Commit -->|Returns| Return
 ```
 
 ## Database Schema
-
-<!-- TODO: Update DB scheme -->
 
 The application uses a single database table to map original URLs to their shortened counterparts:
 
 ```mermaid
 erDiagram
-    URLSHORTENR {
+    urlshortenr {
         int id PK "Primary Key (Auto-Increment)"
         string original_url "nullable=False, max_length=500"
         string short_url "nullable=True, unique=True, max_length=10"
-        datetime created_at "default=now()"
+        datetime created_at "nullable=False, server_default=now()"
     }
 ```
 
